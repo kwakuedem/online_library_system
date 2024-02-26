@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <!-- Add any other content or actions relevant to the user's dashboard -->
+  
+  {% if user.is_student %}
+    <ul>
+      <li style='list-style:none; padding:10px 0'><a style='text-decoration:underline;font-weight: bold; padding:10px 0;' href="{% url 'borrow_book' %}">Borrow Book</a></li>
+      <li style='list-style:none; padding:10px 0'><a style='text-decoration:underline;font-weight: bold; padding:10px 0;' href="{% url 'borrowed_books' %}">Check Borrowed Books</a></li>
+    </ul>
+  {% endif %}
+{% endblock %}

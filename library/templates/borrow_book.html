@@ -1,0 +1,23 @@
+<!-- library/templates/borrow_book.html -->
+{% extends 'base.html' %}
+
+{% block title %}Borrow Book{% endblock %}
+
+{% block content %}
+    <h2>Borrow a Book</h2>
+    <p>Student: {{ student.firstname }} {{ student.lastname }} - {{ student.index_number }}</p>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="book">Select a book:</label>
+        <input type="number" hidden name="student" value={{user.id}}>
+        <select name="book" required>
+            {% for book in books %}
+                <option value="{{ book.id }}">{{ book.title }} by {{ book.author }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Borrow</button>
+    </form>
+
+    <p><a href="{% url 'borrowed_books' %}">Check Borrowed Books</a></p>
+{% endblock %}

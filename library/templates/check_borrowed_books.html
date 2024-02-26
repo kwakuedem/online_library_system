@@ -1,0 +1,25 @@
+<!-- library/templates/check_borrowed_books.html -->
+{% extends 'base.html' %}
+
+{% block title %}Borrowed Books{% endblock %}
+
+{% block content %}
+    <h2>Borrowed Books</h2>
+    
+    {% if borrowed_books %}
+        {% comment %} <h2>Borrowed Books:</h2> {% endcomment %}
+        <ul>
+            {% for borrowed_book in borrowed_books %}
+                <li>
+                    <div>
+                        <h3>{{ borrowed_book.book.title }} by {{ borrowed_book.book.author }}</h3>
+                        <p>Return Date: {{ borrowed_book.return_date }} </p>
+                        <p>Status: {% if borrowed_book.returned %}<spam style="font-weight:bold; color:green">Returned<spam>{% else %}<spam style="font-weight:bold; color:red">Not Returned{% endif %} </p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books borrowed.</p>
+    {% endif %}
+{% endblock %}

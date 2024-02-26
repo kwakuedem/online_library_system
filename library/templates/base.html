@@ -1,0 +1,35 @@
+{% load static %}
+
+<!-- library/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}Library Management{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul class="menu">
+               
+                <li><a href="{% url 'index' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_dashboard' %}">Dashboard</a></li>
+               
+               
+                    <li><a style="color:orange;" href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                
+                {% endif %}
+              
+            </ul>
+        </nav>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
